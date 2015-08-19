@@ -53,14 +53,24 @@ void MainUILoop() {
                     printf("账号或密码不正确\n");
                     break;
                 }else if ([NameFromDB isEqualToString:@"Admin"]){
-                    //建立一个人对象，并拥有SuperOration
+                    //进入，管理员界面 建立一个人对象，并拥有SuperOration操作
+                    
+                    //画出视图，并进入事件循环
                     
                     
                     
-                    
-                    
-                    setupAdminUI();
+                    AdminUILoop();
                 }
+                // 进入普通会员界面
+                 //画出视图，并进入事件循环
+                 // 建立一个人对象，并拥有Operation操作
+
+                
+                
+                setupMemUI();
+                
+                
+                
                 break;
             }
             case 2:  //注册
@@ -97,6 +107,144 @@ void MainUILoop() {
             {
                 printf("系统已退出");
              //   NSLog(@"哈哈哈");
+                return;
+            }
+            default:
+            {
+#warning 补充乱点序号的处理
+                break;
+            }
+        }
+    }
+}
+
+
+void AdminUILoop(){
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }
+    
+    setupAdminUI();
+    int n;
+    while (1)
+    {
+        printf("现在管理员菜单,请选择：");
+        scanf("%d",&n);
+        switch(n) {
+            case 1:   //查看用户信息
+            {
+               
+                
+                break;
+            }
+            case 2:  //修改用户名字
+            {
+     
+                break;
+            }
+            case 3:  //删除用户信息
+            {
+                
+                break;
+            }
+            case 4:  //用户资金操作
+            {
+                
+                break;
+            }
+            case 5:  //我要商品操作
+            {
+                
+                break;
+            }
+            case 6:  //我要订单操作
+            {
+                
+                break;
+            }
+            case 7:  //我要添加用户
+            {
+                
+                break;
+            }
+            case 0:
+            {
+                printf("系统已退出");
+                //   NSLog(@"哈哈哈");
+                return;
+            }
+            default:
+            {
+#warning 补充乱点序号的处理
+                break;
+            }
+        }
+    }
+}
+
+void MemUILoop(){
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+    if (![db open]) {
+        NSLog(@"Could not open db.");
+        return ;
+    }
+    
+    
+    setupMemUI();
+    int n;
+    while (1)
+    {
+        printf("现在普通用户菜单,请选择：");
+        scanf("%d",&n);
+        switch(n) {
+            case 1:   //我要存款
+            {
+                
+                
+                break;
+            }
+            case 2:  //我要取款
+            {
+                
+                break;
+            }
+            case 3:  //查看资金流水
+            {
+                
+                break;
+            }
+            case 4:  //用户转账
+            {
+                
+                break;
+            }
+            case 5:  //修改密码
+            {
+                
+                break;
+            }
+            case 6:  //购买商品
+            {
+                
+                break;
+            }
+            case 7:  //订单操作
+            {
+                
+                break;
+            }
+            case 0:
+            {
+                printf("系统已退出");
+                //   NSLog(@"哈哈哈");
                 return;
             }
             default:

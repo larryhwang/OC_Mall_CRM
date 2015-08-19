@@ -12,5 +12,6 @@
 @interface Test : NSObject
 
 void MainUILoop();
-
+void AdminUILoop();
+void MemUILoop();
 @end
