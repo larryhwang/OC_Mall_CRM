@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		468191F11B84B53100324EB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 468191F01B84B53100324EB2 /* main.m */; };
-		468191F91B84C07100324EB2 /* SetUI.c in Sources */ = {isa = PBXBuildFile; fileRef = 468191F71B84C07100324EB2 /* SetUI.c */; };
+		468191FD1B84C83F00324EB2 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 468191FC1B84C83F00324EB2 /* Test.m */; };
+		468192001B84C92300324EB2 /* UISetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 468191FF1B84C92300324EB2 /* UISetup.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +27,10 @@
 /* Begin PBXFileReference section */
 		468191ED1B84B53100324EB2 /* OC在线销售系统 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OC在线销售系统"; sourceTree = BUILT_PRODUCTS_DIR; };
 		468191F01B84B53100324EB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		468191F71B84C07100324EB2 /* SetUI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SetUI.c; sourceTree = "<group>"; };
-		468191F81B84C07100324EB2 /* SetUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUI.h; sourceTree = "<group>"; };
+		468191FB1B84C83F00324EB2 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		468191FC1B84C83F00324EB2 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		468191FE1B84C92300324EB2 /* UISetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISetup.h; sourceTree = "<group>"; };
+		468191FF1B84C92300324EB2 /* UISetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISetup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				468191F01B84B53100324EB2 /* main.m */,
-				468191F71B84C07100324EB2 /* SetUI.c */,
-				468191F81B84C07100324EB2 /* SetUI.h */,
+				468191FB1B84C83F00324EB2 /* Test.h */,
+				468191FC1B84C83F00324EB2 /* Test.m */,
+				468191FE1B84C92300324EB2 /* UISetup.h */,
+				468191FF1B84C92300324EB2 /* UISetup.m */,
 			);
 			path = "OC在线销售系统";
 			sourceTree = "<group>";
@@ -123,8 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				468191F91B84C07100324EB2 /* SetUI.c in Sources */,
+				468191FD1B84C83F00324EB2 /* Test.m in Sources */,
 				468191F11B84B53100324EB2 /* main.m in Sources */,
+				468192001B84C92300324EB2 /* UISetup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

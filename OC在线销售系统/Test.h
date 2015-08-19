@@ -1,5 +1,5 @@
 //
-//  main.m
+//  Test.h
 //  OC在线销售系统
 //
 //  Created by Larry on 15/8/19.
@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Test.h"
-void MainUILoop();
-int main(int argc, const char * argv[]) {
-    
-    MainUILoop();
-    return 0;
-}
+#import "UISetup.h"
+@interface Test : NSObject
 
+void MainUILoop();
+
+@end
