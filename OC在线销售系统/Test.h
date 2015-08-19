@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UISetup.h"
+#import "FMDB.h"
 @interface Test : NSObject
 
 void MainUILoop();

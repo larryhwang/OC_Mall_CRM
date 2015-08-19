@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  OC在线销售系统
+//
+//  Created by Larry on 15/8/20.
+//  Copyright (c) 2015年 Larry. All rights reserved.
+//
+#import <Foundation/Foundation.h>
+#ifndef OC_______PrefixHeader_pch
+#define OC_______PrefixHeader_pch
+
+
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//   NSString *documentDirectory = [paths objectAtIndex:0];
+//    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
+//   FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
+//
+//#define FILE_PATH    [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"MyDatabase.db"] ;
+
+
+#endif
+//    NSString *documentDirectory = [paths objectAtIndex:0];
+//    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
