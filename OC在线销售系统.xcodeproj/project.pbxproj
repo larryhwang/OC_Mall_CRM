@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		468191F11B84B53100324EB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 468191F01B84B53100324EB2 /* main.m */; };
+		468191F91B84C07100324EB2 /* SetUI.c in Sources */ = {isa = PBXBuildFile; fileRef = 468191F71B84C07100324EB2 /* SetUI.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		468191ED1B84B53100324EB2 /* OC在线销售系统 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OC在线销售系统"; sourceTree = BUILT_PRODUCTS_DIR; };
 		468191F01B84B53100324EB2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		468191F71B84C07100324EB2 /* SetUI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SetUI.c; sourceTree = "<group>"; };
+		468191F81B84C07100324EB2 /* SetUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUI.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				468191F01B84B53100324EB2 /* main.m */,
+				468191F71B84C07100324EB2 /* SetUI.c */,
+				468191F81B84C07100324EB2 /* SetUI.h */,
 			);
 			path = "OC在线销售系统";
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468191F91B84C07100324EB2 /* SetUI.c in Sources */,
 				468191F11B84B53100324EB2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +211,7 @@
 		468191F51B84B53100324EB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -212,6 +219,7 @@
 		468191F61B84B53100324EB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -7,11 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SetUI.h"
+void Loop();
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
-    }
+    setupHomeUI();
+    Loop();
     return 0;
+}
+
+void Loop() {
+    int n;
+    while (1)
+    {
+        printf("请输入序号：");
+        scanf("%d",&n);
+        switch(n) {
+            case 1:
+            {
+                NSLog(@"1");
+                break;
+            }
+            case 2:
+            {   NSLog(@"2");
+                break;
+            }
+            case 0:
+            {   NSLog(@"系统已退出，谢谢使用！");
+                return;
+            }
+            default:
+            {
+                
+                break;
+            }
+        }
+    }
 }
