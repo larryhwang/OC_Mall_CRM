@@ -13,8 +13,10 @@
 #include "UISetup.h"
 @implementation Test
 
-self.CurrenUser =@"ff";
-void MainUILoop() {
+-(void)setCurUser:(NSString *)name{
+    self.CurrenUser = name;
+}
+-(void) MainUILoop {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
     NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
@@ -24,7 +26,7 @@ void MainUILoop() {
         return ;
     }
     
-    
+   
     setupHomeUI();
     int n;
     while (1)
@@ -58,7 +60,7 @@ void MainUILoop() {
                     //画出视图，并进入事件循环
                     
                     
-                    
+                   
                   AdminUILoop();
                 }
                 // 进入普通会员界面
@@ -66,7 +68,7 @@ void MainUILoop() {
                  // 建立一个人对象，并拥有Operation操作
 
                 
-                self.
+              
                 setupMemUI();
                 
                 
