@@ -50,8 +50,8 @@ int main(int argc, const char * argv[]) {
 //  [db executeUpdate:@"INSERT INTO Goods (Name,Count,Money) VALUES (?,?,?)",
 //    
 //    @"包子", [NSNumber numberWithInt:20],[NSNumber numberWithInt:2] ,[NSData dataWithContentsOfFile: dbPath]];
-    AdminUILoop();
-    
+  //  AdminUILoop();
+    MemUILoop();
     return 0;
 }
 

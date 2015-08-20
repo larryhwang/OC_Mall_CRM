@@ -10,7 +10,7 @@
 #import "UISetup.h"
 #import "FMDB.h"
 @interface Test : NSObject
-
+@property(nonatomic,copy) NSString *CurrenUser;
 void MainUILoop();
 void AdminUILoop();
 void MemUILoop();
