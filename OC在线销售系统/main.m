@@ -40,6 +40,16 @@ int main(int argc, const char * argv[]) {
 //    }
   //  MainUILoop();
    // setupAdminUI();
+    
+    
+    
+    
+    
+    //建立一张商品表，UID ,商品名，数量，单价 ,并添加包子
+//  [db executeUpdate:@"CREATE TABLE Goods (UID integer,Name text, Count integer, Money integer)"];
+//  [db executeUpdate:@"INSERT INTO Goods (Name,Count,Money) VALUES (?,?,?)",
+//    
+//    @"包子", [NSNumber numberWithInt:20],[NSNumber numberWithInt:2] ,[NSData dataWithContentsOfFile: dbPath]];
     AdminUILoop();
     
     return 0;

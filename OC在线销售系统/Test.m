@@ -139,6 +139,7 @@ void AdminUILoop(){
         switch(n) {
             case 1:   //查看用户信息
             {
+#pragma mark -查看所有用户信息
                 FMResultSet *rs = [db executeQuery:@"select * from Users"];
                 printf("                                                    name    |    password    |     money\n");
                 while ([rs next]) {
@@ -275,7 +276,54 @@ void AdminUILoop(){
                              break;
                                   }//end _ Case
                         case 2:{
-                              //转账
+                            //转账
+#warning 转账
+                            printf("输入需要转账的用户名:");
+                            
+                            char *Name=(char *)malloc(20);
+                            
+                            scanf("%s",Name);
+                            
+                            NSString *de_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                            
+                            NSLog(@"%@",de_name);
+                            
+                            
+                            
+                            NSString *NameFromDB = [db stringForQuery:@"SELECT Name FROM Users WHERE Name = ?",de_name];
+                            
+                            if (NameFromDB ==nil) {
+                                printf("该用户不存在\n");
+                                break ;
+                            } else {
+                                printf("输入转入账户的用户名:");
+                                scanf("%s",Name);
+                                NSString *Acept_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                                NSString *Acept_NameFromDB = [db stringForQuery:@"SELECT Name FROM Users WHERE Name = ?",de_name];
+                                if (Acept_NameFromDB == nil) {
+                                    printf("该用户不存在");
+                                }else{
+                                    int M ;
+                                    printf("输入转账金额");
+                                    scanf("%d",&M);
+                                    int de_MoneyDB = [db intForQuery:@"SELECT Money FROM Users WHERE Name = ?",de_name];
+                                    int ac_MoneyDB = [db intForQuery:@"SELECT Money FROM Users WHERE Name = ?",Acept_name];
+                                    if (M>de_MoneyDB) {
+                                        printf("余额为%d,金额不足\n",de_MoneyDB);
+                                        break ;
+                                    }else{
+                                        //计算
+                                        int New_deMoneyDB = de_MoneyDB - M;
+                                        int New_acMoneyDB = ac_MoneyDB + M;
+                                        //更新
+                                        NSString *sql_de =[NSString stringWithFormat:@"UPDATE  Users SET Money= %d WHERE Name = '%@'",New_deMoneyDB, de_name];
+                                        NSString *sql_ac =[NSString stringWithFormat:@"UPDATE  Users SET Money= %d WHERE Name = '%@'",New_acMoneyDB, Acept_name];
+                                        if ([db executeUpdate:sql_de]&&[db executeUpdate:sql_ac]) {
+                                            printf("转账成功!\n");
+                                        }
+                                    }
+                                }
+                            }
                             break;
                                   }
                         default:
@@ -285,6 +333,7 @@ void AdminUILoop(){
                         }
                     
                 } //end_while
+                    break;
             }
         }//end_case4
                 
@@ -293,12 +342,240 @@ void AdminUILoop(){
                 
             case 5:  //我要商品操作
             {
-                
+                int n;
+#warning 商品变更
+                while (1){
+                    printf("_______________________________\n");
+                    printf("          商品操作       \n");
+                    printf("-----------------------------\n");
+                    printf("    |  1.查询当前商品  ｜    \n");
+                    printf("    |  2.新增额外商品  ｜    \n");
+                    printf("    |  3.删除制定商品  ｜    \n");
+                    printf("-----------------------------\n");
+                    printf("请输入操作序号:");
+                    scanf("%d",&n);
+                    switch (n) {
+#warning 查询商品
+                        case 1:{
+                            FMResultSet *rs = [db executeQuery:@"select * from Goods"];
+                            printf("                                                    name    |    Count    |     Price     \n");
+                            while ([rs next]) {
+                                NSString *name = [rs stringForColumnIndex:1];
+                                int  count = [rs intForColumnIndex:2];
+                                int  Money = [rs intForColumnIndex:3];
+                                
+                                NSLog(@"%@      %i           %i",name,count,Money);
+                               
+                            }
+                             break;
+
+                        }//end _ Case1
+                        case 2:{
+                            //新增商品
+#warning 新增商品
+                            //获取
+                              char *Name=(char *)malloc(20);
+                              int count ;
+                              int price ;
+                            
+                            printf("输入商品名:");
+                            scanf("%s",Name);
+                            printf("输入商品价格:");
+                            scanf("%d",&price);
+                            printf("输入该商品数量:");
+                            scanf("%d",&count);
+
+                            NSString *str_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                            
+                            
+                            //插入
+                      BOOL SUCESS =   [db executeUpdate:@"INSERT INTO Goods (Name,Count,Money) VALUES (?,?,?)",
+                                str_name, [NSNumber numberWithInt:count],[NSNumber numberWithInt:price] ,[NSData dataWithContentsOfFile: dbPath]];
+                            if(SUCESS) {
+                                printf("新增商品成功\n");
+                            }else{
+                                printf("新增失败,请重试\n");
+                            }
+                            
+                                                } //end_case2 新增商品
+                            break;
+                      
+                            
+                            
+                            
+                            
+                        case 3:{
+                            //删除商品
+#warning 删除商品
+                            printf("输入需要删除的商品名:");
+                            
+                            char *Name=(char *)malloc(20);
+                            
+                            scanf("%s",Name);
+                            
+                            NSString *pd_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                            
+                            NSLog(@"%@",pd_name);
+                            
+                            
+                            
+                            NSString *pd_nameDB = [db stringForQuery:@"SELECT Name FROM Goods WHERE Name = ?",pd_name];
+                            
+                            if (pd_nameDB ==nil) {
+                                printf("该商品不存在\n");
+                                break ;
+                            } else {
+                               
+                                NSString * query = [NSString stringWithFormat:@"DELETE FROM Goods WHERE Name = '%@'",pd_nameDB];
+                                if ([db executeUpdate:query]) {
+                                    printf("删除成功\n");
+                                }
+
+                            } //end_else
+                            break;
+                        }//end_case3  删除商品
+                            
+                            
+                        default:
+                        {
+                            
+                            break;
+                        }
+                            
+                    } //end_while
+                    break;
+                }
+
+
                 break;
             }
             case 6:  //我要订单操作
             {
-                
+                {      int n;
+#warning 订单操作
+                    while (1){
+                        printf("_______________________________\n");
+                        printf("          订单操作       \n");
+                        printf("-----------------------------\n");
+                        printf("    |  1.查询所有订单  ｜    \n");
+                        printf("    |  2.按照商品查询  ｜    \n");
+                        printf("    |  3.按照用户查询  ｜    \n");
+                        printf("    |  4.新增额外订单  ｜    \n");
+                        printf("    |  5.删除指定订单  ｜    \n");
+                        printf("-----------------------------\n");
+                        printf("请输入操作序号:");
+                        scanf("%d",&n);
+                        switch (n) {
+#pragma mark -Case1.订单查询
+                            case 1:{   //
+                                FMResultSet *rs = [db executeQuery:@"select * from Deal"];
+                                printf("                                                    Payer    |    Goods    |     Price   |        Count           \n");
+                                while ([rs next]) {
+                                    NSString *name = [rs stringForColumnIndex:1];
+                                    NSString  *goods = [rs stringForColumnIndex:2];
+                                    int  Count = [rs intForColumnIndex:3];
+                                    int  Price = [rs intForColumnIndex:4];
+                                    
+                                    NSLog(@"%@          %@           %i        %i",name,goods,Price,Count);
+                                   
+                                }
+            
+                                 break;
+                                
+                                      }//end _ Case1.订单查询
+#pragma mark -Case2.按商品查询
+                            case 2:{    //按商品查询
+                                
+#warning 转账
+                                printf("输入需要查询的商品名:");
+                                
+                                char *Name=(char *)malloc(20);
+                                
+                                scanf("%s",Name);
+                                
+                                NSString *pro_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                                
+                                NSLog(@"%@",pro_name);
+                                
+                                
+                                
+                                NSString *ProNameFromDB = [db stringForQuery:@"SELECT Name FROM Goods WHERE Name = ?",pro_name];
+                                
+                                if (ProNameFromDB ==nil) {
+                                    printf("该商品不存在\n");
+                                    break ;
+                                } else {
+                                    NSString *sql = [NSString stringWithFormat:@"select * from Deal WHERE Goods = '%@'",ProNameFromDB];
+                                    FMResultSet *rs = [db executeQuery:sql];
+                                    printf("                                                    Payer    |    Goods    |     Price   |        Count           \n");
+                                    while ([rs next]) {
+                                        NSString *name = [rs stringForColumnIndex:1];
+                                        NSString  *goods = [rs stringForColumnIndex:2];
+                                        int  Count = [rs intForColumnIndex:3];
+                                        int  Price = [rs intForColumnIndex:4];
+                                        
+                                        NSLog(@"%@          %@           %i        %i",name,goods,Price,Count);
+                                        
+                                    }
+                                    
+                                    break;
+                                }//end_else
+                                break;
+                            }//end _ Case2.商品查询
+#pragma mark -Case3.按用户查询
+                            case 3:{
+                                
+                                printf("输入需要查询的用户名:");
+                                
+                                char *Name=(char *)malloc(20);
+                                
+                                scanf("%s",Name);
+                                
+                                NSString *pro_name =[NSString stringWithCString:Name encoding:NSUTF8StringEncoding];
+                                
+                                NSLog(@"%@",pro_name);
+                                
+                                
+                                
+                                NSString *ProNameFromDB = [db stringForQuery:@"SELECT Name FROM Goods WHERE Name = ?",pro_name];
+                                
+                                if (ProNameFromDB ==nil) {
+                                    printf("该商品不存在\n");
+                                    break ;
+                                } else {
+                                    NSString *sql = [NSString stringWithFormat:@"select * from Deal WHERE Goods = '%@'",ProNameFromDB];
+                                    FMResultSet *rs = [db executeQuery:sql];
+                                    printf("                                                    Payer    |    Goods    |     Price   |        Count           \n");
+                                    while ([rs next]) {
+                                        NSString *name = [rs stringForColumnIndex:1];
+                                        NSString  *goods = [rs stringForColumnIndex:2];
+                                        int  Count = [rs intForColumnIndex:3];
+                                        int  Price = [rs intForColumnIndex:4];
+                                        
+                                        NSLog(@"%@          %@           %i        %i",name,goods,Price,Count);
+                                        
+                                    }
+                                    
+                                    break;
+                                }//end_else
+                                break;
+
+                            
+                            } //end _ Case3.按用户查询
+#pragma mark -Case4.新增订单
+                            case 4:{} //end _ Case4.新增订单
+#pragma mark -Case3.删除订单
+                            case 5:{} //end _ Case5.删除订单
+                            default:
+                            {
+                                
+                                break;
+                            }
+                                
+                        } //end_while
+                        break;
+                    }
+                }
                 break;
             }
             case 7:  //我要添加用户
@@ -334,7 +611,6 @@ void AdminUILoop(){
             case 0:
             {
                 printf("系统已退出");
-                //   NSLog(@"哈哈哈");
                 return;
             }
             default:
@@ -347,9 +623,9 @@ void AdminUILoop(){
 }
 
 void MemUILoop(){
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    NSString *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
+    NSArray    *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString   *documentDirectory = [paths objectAtIndex:0];
+    NSString   *dbPath = [documentDirectory stringByAppendingPathComponent:@"MyDatabase.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath] ;
     if (![db open]) {
         NSLog(@"Could not open db.");
